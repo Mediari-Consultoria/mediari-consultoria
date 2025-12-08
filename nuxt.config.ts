@@ -61,7 +61,7 @@ export default defineNuxtConfig({
     url: 'https://www.mediariconsultoria.com.br',
     name: 'Mediari Consultoria',
     description:
-      'Consultoria jurídica especializada para empresas e pessoas físicas. Experts em Direito Bancário, do Consumidor e Empresarial.',
+      'Consultoria jurídica especializada para empresas e pessoas físicas. Soluções em Direito Bancário, do Consumidor, Trabalhista, Civil e Empresarial. Atendimento em São Paulo e região.',
     defaultLocale: 'pt-BR',
   },
 
@@ -71,7 +71,7 @@ export default defineNuxtConfig({
       name: 'Mediari Consultoria',
       alternateName: 'Mediari',
       description:
-        'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+        'Consultoria jurídica especializada para empresas e pessoas físicas. Soluções em Direito Bancário, do Consumidor, Trabalhista, Civil e Empresarial. Atendimento em São Paulo e região.',
       url: 'https://www.mediariconsultoria.com.br',
       logo: '/favicon.png',
       contactPoint: {
@@ -91,11 +91,11 @@ export default defineNuxtConfig({
   seo: {
     meta: {
       description:
-        'Consultoria jurídica para pequenas e médias empresas e pessoas físicas. Especialistas em Direito Trabalhista, Bancário e do Consumidor.',
+        'Consultoria jurídica especializada para empresas e pessoas físicas. Soluções em Direito Bancário, do Consumidor, Trabalhista, Civil e Empresarial. Atendimento em São Paulo e região.',
       author: 'Mediari Consultoria',
       applicationName: 'Mediari Consultoria',
       keywords:
-        'consultoria jurídica, direito empresarial, direito bancário, direito do consumidor, advocacia, São Paulo',
+        'consultoria jurídica, direito empresarial, direito bancário, direito do consumidor, direito trabalhista, direito civil, direito criminal, contratos, assessoria jurídica, advocacia, advogados em São Paulo, consultoria para empresas, defesa do consumidor, revisão de contratos, juros abusivos, negociação de dívidas, busca e apreensão, indenização, danos morais, danos materiais, compliance, LGPD, mediação, arbitragem, contencioso, preventivo, consultoria legal, escritório de advocacia, advogados especialistas, São Paulo',
     },
   },
 

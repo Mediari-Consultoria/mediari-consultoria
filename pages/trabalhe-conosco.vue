@@ -14,6 +14,8 @@
   useSeoMeta({
     title: `${t('careers.page_title')}`,
     description: t('careers.section_description'),
+    keywords:
+      'trabalhe conosco, vagas, oportunidades, carreira jurídica, advogado, estágio direito, mediari consultoria, emprego são paulo',
     ogTitle: `${t('careers.section_title')} - Mediari Consultoria`,
     ogDescription: t('careers.section_description'),
     ogImage: '/mediari-logo.svg',
