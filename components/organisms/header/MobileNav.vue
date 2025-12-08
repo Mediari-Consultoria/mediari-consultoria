@@ -120,7 +120,7 @@
         class="app-header__nav app-header__nav--mobile flex absolute top-full shadow-lg left-0 right-0 flex-col gap-1 p-1 overflow-hidden border-t-2 border-b-2 max-h-[500px] opacity-100 visible"
         :class="{
           'bg-body-bg/95 border-accent-color': isHomePage,
-          'border-gray-400': !isHomePage,
+          'bg-body-bg border-gray-400': !isHomePage,
         }"
       >
         <!-- Links (home, seções..., trabalhe-conosco) no mobile -->
