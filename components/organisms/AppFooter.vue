@@ -4,7 +4,10 @@
   import { useScrollToSection } from '@/utils/useScrollToSection'
   import { useContacts } from '@/utils/useContacts'
   import { useI18n } from 'vue-i18n'
-  import { computed } from 'vue'
+  import { computed, ref } from 'vue'
+  import DropdownMenu from '@/components/molecules/DropdownMenu.vue'
+  import { CONTACT_INFO } from '~/constants'
+
   const { t, locale, locales } = useI18n()
   const router = useRouter()
   const switchLocalePath = useSwitchLocalePath()
@@ -58,6 +61,8 @@
   ])
 
   const availableLocales = locales.value
+
+  const showWhatsappMenu = ref(false)
 
   import { useLocalePathSafe } from '~/composables/useLocalePathSafe'
   const localePath = useLocalePathSafe()
@@ -124,20 +129,20 @@
             <button
               :class="footer__contact_btn_util"
               @click.prevent="
-                () =>
-                  openLinkInBrowser(
-                    'https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda'
-                  )
+                () => openLinkInBrowser(CONTACT_INFO.socialMedia.linkedin.link)
               "
               aria-label="Abrir LinkedIn da Mediari"
             >
               <Icon :class="footer__contact_btn_icon" name="mdi:linkedin" />
-              <p v-if="screenWidth < 1280 && !(screenWidth < 640)">
-                Mediari Consultoria
+              <p v-if="screenWidth < 1024 && !(screenWidth < 640)">
+                {{ CONTACT_INFO.socialMedia.linkedin.display }}
               </p>
             </button>
             <button
-              :class="footer__contact_btn_util"
+              :class="[
+                footer__contact_btn_util,
+                'max-lg:col-span-2 max-lg:order-last max-lg:w-full',
+              ]"
               @click.prevent="openMailTo"
               aria-label="Enviar e-mail para contato@mediari.com.br"
             >
@@ -145,20 +150,21 @@
                 :class="footer__contact_btn_icon"
                 name="mdi:email-outline"
               />
-              <p v-if="!(screenWidth < 640)">contato@mediari.com.br</p>
+              <p v-if="!(screenWidth < 640)">
+                {{ CONTACT_INFO.email.display }}
+              </p>
             </button>
             <button
               :class="footer__contact_btn_util"
               @click.prevent="
-                () =>
-                  openLinkInBrowser(
-                    'https://www.instagram.com/mediari.consultoria'
-                  )
+                () => openLinkInBrowser(CONTACT_INFO.socialMedia.instagram.link)
               "
               aria-label="Abrir Instagram da Mediari"
             >
               <Icon :class="footer__contact_btn_icon" name="mdi:instagram" />
-              <p v-if="!(screenWidth < 640)">@mediari.consultoria</p>
+              <p v-if="!(screenWidth < 640)">
+                {{ CONTACT_INFO.socialMedia.instagram.display }}
+              </p>
             </button>
             <button
               :class="footer__contact_btn_util"
@@ -169,8 +175,43 @@
                 :class="footer__contact_btn_icon"
                 name="mdi:phone-outline"
               />
-              <p v-if="!(screenWidth < 640)">11 4227-3008</p>
+              <p v-if="!(screenWidth < 640)">
+                {{ CONTACT_INFO.phone.display }}
+              </p>
             </button>
+            <div class="relative max-lg:w-full" ref="whatsappDropdownContainer">
+              <button
+                :class="[footer__contact_btn_util, 'max-lg:w-full']"
+                @click.prevent.stop="showWhatsappMenu = !showWhatsappMenu"
+                aria-label="Ver números de WhatsApp"
+              >
+                <Icon :class="footer__contact_btn_icon" name="mdi:whatsapp" />
+                <p v-if="!(screenWidth < 640)">WhatsApp</p>
+                <Icon
+                  name="mdi:chevron-down"
+                  class="transition-transform duration-200 text-lg"
+                  :class="showWhatsappMenu ? 'rotate-180' : ''"
+                />
+              </button>
+
+              <DropdownMenu
+                :isOpen="showWhatsappMenu"
+                @close="showWhatsappMenu = false"
+              >
+                <a
+                  v-for="wa in CONTACT_INFO.whatsapp"
+                  :key="wa.display"
+                  :href="wa.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="px-1 py-1 text-sm text-gray-700 hover:bg-accent-color/20 hover:text-accent-color transition-colors duration-200 no-underline flex items-center gap-0.5"
+                  @click="showWhatsappMenu = false"
+                >
+                  <Icon name="mdi:whatsapp" class="text-green-600 text-lg" />
+                  {{ wa.display }}
+                </a>
+              </DropdownMenu>
+            </div>
           </div>
         </div>
         <div
@@ -289,5 +330,24 @@
   p,
   ul {
     margin: 0;
+  }
+
+  .dropdown-fade-enter-active,
+  .dropdown-fade-leave-active {
+    transition:
+      opacity 0.2s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
+
+  .dropdown-fade-enter-from,
+  .dropdown-fade-leave-to {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+
+  .dropdown-fade-enter-to,
+  .dropdown-fade-leave-from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 </style>
