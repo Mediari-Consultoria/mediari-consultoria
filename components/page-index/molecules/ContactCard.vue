@@ -1,10 +1,13 @@
 <script setup lang="ts">
-  type ButtonAction = () => void
+  type ButtonAction = (e: MouseEvent) => void
   interface ContactCardProps {
     backgroundImage: string
     iconImage: string
     buttonText: string
     buttonAction: ButtonAction
+    dropdownState?: number
+    imgModifiers?: Record<string, string | number>
+    shortButtonText?: string
   }
 
   defineProps<ContactCardProps>()
@@ -23,6 +26,7 @@
       >
         <NuxtImg
           :src="backgroundImage"
+          :modifiers="imgModifiers || {}"
           alt="Background"
           provider="cloudinary"
           class="contact-card__image w-full h-full block object-cover blur-xs transition-transform duration-200 ease-in-out"
@@ -35,16 +39,30 @@
         <Icon
           class="contact-card__icon-box-svg text-[5rem] transition-transform duration-200 ease-in-out max-xl:text-[4rem] max-lg:text-[3.5rem]"
           loading="lazy"
-          :name="'my-icon:' + iconImage"
+          :name="iconImage.includes(':') ? iconImage : 'my-icon:' + iconImage"
         />
       </div>
     </div>
-    <button
-      class="contact-card__button common-button w-full text-base self-center max-lg:text-xs"
-      @click.prevent="buttonAction"
-    >
-      {{ buttonText }}
-    </button>
+    <div class="relative w-full">
+      <button
+        class="contact-card__button common-button w-full text-base self-center max-lg:text-xs"
+        @click.prevent="(e) => buttonAction(e)"
+      >
+        <span :class="{ 'md:max-lg:hidden': shortButtonText }">{{
+          buttonText
+        }}</span>
+        <span v-if="shortButtonText" class="hidden md:max-lg:inline">
+          {{ shortButtonText }}
+        </span>
+        <Icon
+          v-if="dropdownState !== undefined"
+          name="mdi:chevron-down"
+          class="text-lg transition-transform duration-200"
+          :class="{ 'rotate-180': dropdownState === 1 }"
+        />
+      </button>
+      <slot name="dropdown"></slot>
+    </div>
   </div>
 </template>
 
