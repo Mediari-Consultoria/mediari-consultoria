@@ -4,13 +4,30 @@
  */
 
 export const CONTACT_INFO = {
-  phone: '+551142273008',
-  email: 'contato@mediari.com.br',
+  phone: {
+    display: '11 4227-3008',
+    link: 'tel:+551142273008',
+  },
+  email: {
+    display: 'contato@mediari.com.br',
+    link: 'mailto:contato@mediari.com.br',
+  },
   address: 'São Paulo, SP - Brasil',
   socialMedia: {
-    instagram: 'https://instagram.com/mediariconsultoria',
-    linkedin: 'https://linkedin.com/company/mediari-consultoria',
+    instagram: {
+      display: '@mediari.consultoria',
+      link: 'https://www.instagram.com/mediari.consultoria',
+    },
+    linkedin: {
+      display: 'Mediari Consultoria',
+      link: 'https://www.linkedin.com/company/mediari-consultoria-empresarial-ltda',
+    },
   },
+  whatsapp: [
+    { display: '11 91665-8175', link: 'https://wa.me/5511916658175' },
+    { display: '11 91045-6115', link: 'https://wa.me/5511910456115' },
+    { display: '11 91868-0351', link: 'https://wa.me/5511918680351' },
+  ],
 } as const;
 
 export const COMPANY_INFO = {
