@@ -15,16 +15,14 @@ export function useContacts() {
    * Abre o discador de telefone com o número da empresa
    */
   function openPhoneDialer(): void {
-    const phoneLink = `tel:${CONTACT_INFO.phone}`;
-    window.location.href = phoneLink;
+    window.location.href = CONTACT_INFO.phone.link;
   }
 
   /**
    * Abre o cliente de email padrão com o email da empresa
    */
   function openMailTo(): void {
-    const mailtoLink = `mailto:${CONTACT_INFO.email}`;
-    window.location.href = mailtoLink;
+    window.location.href = CONTACT_INFO.email.link;
   }
 
   /**
